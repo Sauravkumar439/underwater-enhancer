@@ -4,7 +4,8 @@ import cv2
 from tensorflow.keras.models import load_model
 
 # Load the model once
-model = load_model("enhancement_model.h5", compile=False)
+model = load_model("enhancement_model", compile=False)
+
 
 # Resize and normalize the input
 def preprocess_image(image):
