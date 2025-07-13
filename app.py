@@ -3,9 +3,9 @@ from PIL import Image
 import numpy as np
 import cv2
 import time
+import os
 from enhancer import enhance_image
 
-# Main processing function
 def process_image(input_img):
     if input_img is None:
         return None, None, "No image uploaded", None
@@ -13,9 +13,13 @@ def process_image(input_img):
     img = np.array(input_img.convert("RGB"))
     enhanced, elapsed = enhance_image(img)
     enhanced_pil = Image.fromarray(enhanced)
-    return input_img, enhanced_pil, f"{elapsed:.2f} seconds", enhanced_pil
 
-# App UI layout and styling
+    # Save image to disk for download
+    save_path = "enhanced_output.png"
+    enhanced_pil.save(save_path)
+
+    return input_img, enhanced_pil, f"{elapsed:.2f} seconds", save_path
+
 with gr.Blocks(css="""
 body {
     background: linear-gradient(135deg, #eaf6ff, #ffffff);
