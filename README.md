@@ -17,7 +17,7 @@ Model trained on the [EUVP dataset](https://www.kaggle.com/datasets/ejlok1/under
 
 ![demo](https://huggingface.co/spaces/sauravkumar439/underwater-enhancer/resolve/main/demo.jpg)
 
-> *(Replace with your actual screenshot if you want)*
+(image.png)
 
 ## Try It Live
 
