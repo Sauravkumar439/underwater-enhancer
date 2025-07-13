@@ -1,10 +1,14 @@
+import os
 import time
 import numpy as np
 import cv2
 import tensorflow as tf
-from keras.layers import TFSMLayer  # Keras 3 specific import
+from keras.layers import TFSMLayer
 
-# Load the model using TFSMLayer (Keras 3 way)
+# Ensure CPU-only execution in this environment
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+# Load the model via TFSMLayer (Keras 3-friendly)
 model = TFSMLayer("enhancement_model", call_endpoint="serving_default")
 
 def preprocess_image(image):
