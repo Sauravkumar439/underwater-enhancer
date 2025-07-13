@@ -5,6 +5,7 @@ import cv2
 import time
 from enhancer import enhance_image
 
+# Main processing function
 def process_image(input_img):
     if input_img is None:
         return None, None, "No image uploaded", None
@@ -14,6 +15,7 @@ def process_image(input_img):
     enhanced_pil = Image.fromarray(enhanced)
     return input_img, enhanced_pil, f"{elapsed:.2f} seconds", enhanced_pil
 
+# App UI layout and styling
 with gr.Blocks(css="""
 body {
     background: linear-gradient(135deg, #eaf6ff, #ffffff);
@@ -50,7 +52,7 @@ footer {display: none !important;}
     gr.Markdown("""
         <h1>🌊 Underwater Image Enhancer</h1>
         <p style="font-size: 16px; color: #333;">
-            Upload your underwater photo and enhance it with AI (U-Net + CBAM model).
+            Upload your underwater photo and enhance it using a deep learning model (U-Net + CBAM).
         </p>
         <hr>
     """)
@@ -62,11 +64,11 @@ footer {display: none !important;}
 
         with gr.Column(scale=2):
             with gr.Row():
-                original = gr.Image(label="Original")
-                enhanced = gr.Image(label="Enhanced")
+                original = gr.Image(label="Original Image")
+                enhanced = gr.Image(label="Enhanced Image")
 
             time_text = gr.Textbox(label="⏱️ Processing Time", interactive=False)
-            download_file = gr.File(label="📥 Download", file_types=[".png"])
+            download_file = gr.File(label="📥 Download Enhanced Image", file_types=[".png"])
 
     enhance_btn.click(
         fn=process_image,
